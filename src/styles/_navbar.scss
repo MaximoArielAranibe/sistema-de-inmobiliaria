@@ -1,0 +1,99 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.navbar {
+  width: 100%;
+  background-color: $color-dark;
+  @include navbar-sticky;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+
+  &__logo {
+    all: unset;
+
+    &--img {
+      height: 100%;
+      margin-left: 1rem;
+      width: 200px;
+      object-fit: contain;
+      cursor: pointer;
+    }
+  }
+
+  &__menu {
+    all: unset;
+    margin-right: 1rem;
+    cursor: pointer;
+
+    &--icon {
+      width: 30px;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__list {
+    font-family: $font-body;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem 0;
+    background-color: $color-dark;
+    border-bottom: 2px solid $color-gray-dark;
+    list-style: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    margin: 0;
+  }
+
+  &__list--item {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    width: min-content;
+    text-align: center;
+
+    &:hover {
+      border-bottom: 2px solid $color-gold;
+    }
+  }
+}
+
+// Animaciones de entrada y salida
+.slide-in {
+  animation: slideIn 0.4s ease forwards;
+}
+
+.slide-out {
+  animation: slideOut 0.4s ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+}

@@ -1,11 +1,16 @@
 import React from 'react';
-import './App.css';
+import { BrowserRouter } from 'react-router-dom';
+import AppRoutes from './routes/AppRoutes';
+import { Navbar } from './components/Navbar';
 
 const App: React.FC = () => {
 
   return (
     <>
-      <h1>Hola</h1>
+      <BrowserRouter>
+      <Navbar />
+          <AppRoutes />
+      </BrowserRouter>
     </>
   )
 }

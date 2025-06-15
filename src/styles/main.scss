@@ -1,0 +1,19 @@
+@use 'variables' as *;
+@use 'navbar' as *;
+
+
+// 🎨 Paleta Premium
+$color-dark: #121212;        // Negro profundo - fondo principal
+$color-gold: #FFD700;        // Dorado - acentos, botones, links destacados
+$color-white: #FFFFFF;       // Blanco - texto, fondos secundarios
+$color-gray-dark: #444444;   // Gris oscuro - texto secundario, bordes, backgrounds
+
+// 🧠 Tipografías
+$font-heading: 'Playfair Display', serif;     // Títulos elegantes
+$font-body: 'Montserrat', sans-serif;         // Texto general limpio y moderno
+
+// 📐 Espaciado base (opcional, si querés usarlo)
+$spacing-unit: 1rem;
+
+// 🕶️ Sombra suave (opcional)
+$shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.1);

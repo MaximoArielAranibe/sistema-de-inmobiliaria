@@ -1,0 +1,71 @@
+// _mixins.scss
+
+// Breakpoints comunes
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+
+// Mixin para mobile (menor o igual a 480px)
+@mixin mobile {
+  @media (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+// Mixin para tablet (menor o igual a 768px)
+@mixin tablet {
+  @media (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+// Mixin para desktop (menor o igual a 1024px)
+@mixin desktop {
+  @media (max-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+@mixin truncate-text($lines: 1) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+
+
+@mixin box-shadow($color: rgba(0,0,0,0.15), $x: 0px, $y: 2px, $blur: 6px) {
+  box-shadow: $x $y $blur $color;
+}
+
+//MIXINS NAVBAR
+
+@mixin navbar-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+
+@mixin navbar-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+@mixin navbar-mobile-menu($breakpoint: 768px) {
+  @media (max-width: $breakpoint) {
+    display: none;
+  }
+}
+
