@@ -7,24 +7,24 @@ import { Link } from 'react-router-dom';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [animationClass, setAnimationClass] = useState('');
   const menuAnimation = useRef<LottieRefCurrentProps | null>(null);
 
   const handleMenu = () => {
     if (!isOpen) {
-      setShowMenu(true);
-      setIsOpen(true);
-      menuAnimation.current?.playSegments([0, 14], true);
+      setIsVisible(true);
+      setAnimationClass('slide-in-top');
     } else {
-      setIsOpen(false);
-      menuAnimation.current?.playSegments([14, 0], true);
+      setAnimationClass('slide-out-top');
+      setTimeout(() => {
+        setIsVisible(false);
+      }, 500); // duración igual a la animación
     }
-  };
 
-  const handleAnimationEnd = () => {
-    if (!isOpen) {
-      setShowMenu(false); // Ocultamos después de la animación de salida
-    }
+    setIsOpen(!isOpen);
+
+    menuAnimation.current?.playSegments(isOpen ? [14, 0] : [0, 14], true);
   };
 
   const onComplete = () => {
@@ -53,17 +53,12 @@ export const Navbar = () => {
         </button>
       </nav>
 
-      {showMenu && (
-        <ul
-          className={`navbar__list ${isOpen ? 'slide-in' : 'slide-out'}`}
-          onAnimationEnd={handleAnimationEnd}
-        >
-          <li className="navbar__list--item">Ventas</li>
-          <li className="navbar__list--item">Alquileres</li>
-          <li className="navbar__list--item">Tasaciones</li>
-          <li className="navbar__list--item">Contacto</li>
-        </ul>
-      )}
+      <ul className={`navbar__list ${isVisible ? animationClass : 'd-none'}`}>
+        <li className="navbar__list--item">Ventas</li>
+        <li className="navbar__list--item">Alquileres</li>
+        <li className="navbar__list--item">Tasaciones</li>
+        <li className="navbar__list--item">Contacto</li>
+      </ul>
     </header>
   );
 };

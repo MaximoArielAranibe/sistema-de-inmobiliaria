@@ -6,6 +6,7 @@
   background-color: $color-dark;
   @include navbar-sticky;
   display: flex;
+  flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
   height: 60px;
@@ -40,45 +41,51 @@
     font-family: $font-body;
     font-size: 12px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    list-style: none;
     padding: 2rem 0;
     background-color: $color-dark;
     border-bottom: 2px solid $color-gray-dark;
-    list-style: none;
+    gap: 0.5rem;
     position: absolute;
     top: 60px;
     left: 0;
     width: 100%;
-    z-index: 10;
     margin: 0;
-  }
+    z-index: 10;
+    transition: opacity 0.5s ease;
 
-  &__list--item {
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-    width: min-content;
-    text-align: center;
+    &--item {
+      cursor: pointer;
+      text-align: center;
+      width: min-content;
+      padding: 0.5rem 1rem;
 
-    &:hover {
-      border-bottom: 2px solid $color-gold;
+      &:hover {
+        border-bottom: 2px solid $color-gold;
+      }
     }
   }
 }
 
-// Animaciones de entrada y salida
-.slide-in {
-  animation: slideIn 0.4s ease forwards;
+// Oculta el menú cuando no está visible
+.d-none {
+  display: none !important;
 }
 
-.slide-out {
-  animation: slideOut 0.4s ease forwards;
+// Animaciones originales
+.slide-in-top {
+  animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
-@keyframes slideIn {
+.slide-out-top {
+  animation: slide-out-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes slide-in-top {
   from {
-    transform: translateY(-20%);
+    transform: translateY(-100%);
     opacity: 0;
   }
   to {
@@ -87,13 +94,13 @@
   }
 }
 
-@keyframes slideOut {
+@keyframes slide-out-top {
   from {
     transform: translateY(0);
     opacity: 1;
   }
   to {
-    transform: translateY(-20%);
+    transform: translateY(-100%);
     opacity: 0;
   }
 }
